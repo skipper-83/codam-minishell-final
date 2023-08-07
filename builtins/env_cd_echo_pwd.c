@@ -1,89 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_env_cd_echo_pwd.c                             :+:      :+:    :+:   */
+/*   env_cd_echo_pwd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertvanandel <albertvanandel@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:40:14 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/07 17:34:45 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:53:08 by albertvanan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "builtin.h"
-#include <stdio.h>
-
-static int	check_exit_arg(char *arg)
-{
-	int	sign;
-	long	n;
-
-	sign = 0;
-	if (arg[0] == '+')
-		sign = 0;
-	else if (arg[0] == '-')
-		sign = -1;
-	else
-	{
-		if (!ft_check_string(arg, ft_isdigit))
-		{
-			ft_putendl_fd("minishell: exit: numeric argument required", 2);
-			return (-1);
-		}
-	}
-	n = ft_atoli(arg);
-	if ((size_t)(n - sign) > LONG_MAX)
-	{
-		ft_putendl_fd("minishell: exit: numeric argument required", 2);
-		n = -1;
-	}
-	if (sign)
-		return ((int)n * sign);
-	return ((int)n);
-}
-
-/**
- * @brief This function implements the shell "exit" command.
- *
- * "exit" command is used to end the shell session. It can optionally accept an 
- * integer argument that sets the exit status.
- *
- * @param env The structure with the current environment variables.
- * @param cmd The structure with the parsed command and its arguments.
- * @return No return value since the function ends the shell session using the 
- * exit system call.
- */
-int	exit_ceash(t_env *env, t_cmd *cmd)
-{
-	long long		exit_status;
-	t_cmd			*arg;
-	int				sign;
-
-	exit_status = 0;
-	sign = 0;
-	if (cmd != NULL && cmd->args != NULL)
-	{
-		arg = (t_cmd *)cmd->args->content;
-		if (ft_lstsize(cmd->args) > 1)
-			return (print_error("exit: too many arguments", NULL), 1 << 8);
-		else
-		{
-			exit_status = check_exit_arg(arg->literal);
-			// printf("status: %lli, %zu\n", exit_status, (size_t)exit_status);
-			
-			// exit_status = 1;
-		}
-	}
-	ft_lstclear(&env->open_fds, NULL);
-	ft_lstclear(&env->hdocs, NULL);
-	ft_lstclear(&env->cmd_list, free_cmd_struct);
-	ft_lstclear(&env->env_vars, free_env_struct);
-	free(env);
-	clear_history();
-	ft_putendl_fd("exit", 1);
-	exit ((int)exit_status);
-}
 
 /**
  * @brief	Display the environment variables.

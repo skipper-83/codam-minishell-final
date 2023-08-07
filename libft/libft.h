@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertvanandel <albertvanandel@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:14:03 by avan-and          #+#    #+#             */
-/*   Updated: 2023/08/07 17:23:48 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:19:36 by albertvanan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 int		ft_atoi(const char *str);
 long	ft_atoli(const char *str);
+size_t	ft_atosizet(const char *str, int *sign);
 char	*ft_itoa(int n);
 char	*ft_llitoa(long long int n);
 char	*ft_uitoa_base(unsigned long long n, char *base);

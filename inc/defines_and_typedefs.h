@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   defines_and_typedefs.h                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: albertvanandel <albertvanandel@student.      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/04/24 23:46:56 by albertvanan   #+#    #+#                 */
-/*   Updated: 2023/07/18 20:40:21 by eluse         ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   defines_and_typedefs.h                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: albertvanandel <albertvanandel@student.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/24 23:46:56 by albertvanan       #+#    #+#             */
+/*   Updated: 2023/08/07 22:59:25 by albertvanan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_AND_TYPEDEFS_H
 # define DEFINES_AND_TYPEDEFS_H
 
-// RL_PROMPT_START_IGNORE
-
-// # define PROMPT "cEAsh > "
 # define PROMPT "\1\e[1m\e[31m\2cEAsh\1\e[0m\2 > "
 
-# define WILDCARD '*'
+# define WILDCARD 42 // *
 # define PAR_OPEN "("
 # define PAR_CLOSE ")"
 
-# define DOLLAR			'$'
-# define ESC_BS			'\\'
-# define S_QUOTE		'\''
-# define D_QUOTE		'"'
-# define BR_OPEN		'('
-# define BR_CLOSED		')'
-# define ASTERIKS		'*'
-# define INF_RED		'<'
+# define DOLLAR			36 	// $
+# define ESC_BS			92 	// /
+# define S_QUOTE		39 	// '
+# define D_QUOTE		34	// "
+# define BR_OPEN		40	// (
+# define BR_CLOSED		41	// }
+# define ASTERIKS		42	// *
+# define INF_RED		60	// <
 # define HEREDOC		"<<"
 # define OUTF_APP_RED	">>"
-# define OUTF_RED		'>'
-# define IS_PIPE		'|'
+# define OUTF_RED		62	// >
+# define IS_PIPE		124 // |
 # define IS_OR			"||"
 # define D_AMP			"&&"
-# define SEMICOLON		';'
+# define SEMICOLON		59	// ;
 
 # define RED "\001\e[0;31m\002"
 # define GREEN "\001\e[0;32m\002"
