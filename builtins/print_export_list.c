@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:55:52 by avan-and          #+#    #+#             */
-/*   Updated: 2023/08/07 15:13:48 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:04:05 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	print_export_list(t_cmd *cmd, t_env *env)
 	{
 		cur = ft_strchr(env_arr[i], '=');
 		cur[0] = 0;
-		ft_printf("declare -x %s=", env_arr[i]);
-		ft_printf("\"%s\"\n", &cur[1]);
+		ft_printf("declare -x %s", env_arr[i]);
+		if (cur[1])
+			ft_printf("=\"%s\"", &cur[1]);
+		ft_printf("\n");
 		i++;
 	}
 	free_2d_arr(env_arr);

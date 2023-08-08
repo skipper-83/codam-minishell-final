@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 16:51:04 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/07 16:27:21 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:40:16 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ int	unset(t_cmd *cmd, t_env *env)
 		found_var = get_env_var(env->env_vars, cur->literal);
 		if (found_var != NULL)
 			ft_lstdel_item(&env->env_vars, found_var, free_env_struct);
+		if (!ft_strcmp(cur->literal, "HOME") || \
+			!ft_strcmp(cur->literal, "OLDPWD") || \
+			!ft_strcmp(cur->literal, "PWD"))
+			add_env_var(env, cur->literal, "", 1);
 		wrk_li = wrk_li->next;
 	}
 	return (retval << 8);

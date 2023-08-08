@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertvanandel <albertvanandel@student.    +#+  +:+       +#+        */
+/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 22:51:18 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/07 22:52:59 by albertvanan      ###   ########.fr       */
+/*   Updated: 2023/08/08 12:50:06 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int	exit_ceash(t_env *env, t_cmd *cmd)
 	free(env);
 	clear_history();
 	ft_putendl_fd("exit", 1);
+	system("leaks -q minishell");
 	exit ((int)exit_status);
 }

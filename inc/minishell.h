@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 22:23:33 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/07 15:28:40 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:37:57 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ char		**list_to_arr(t_list *list, char *(*f)(void *param));
 void		free_2d_arr(char **arr);
 int			exit_ceash(t_env *env, t_cmd *cmd);
 void		signal_message(int signo);
+int			add_env_var(t_env *env, char *key, char *value, int export);
 
 #endif

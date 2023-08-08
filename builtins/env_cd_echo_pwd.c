@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_cd_echo_pwd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertvanandel <albertvanandel@student.    +#+  +:+       +#+        */
+/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:40:14 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/07 22:53:08 by albertvanan      ###   ########.fr       */
+/*   Updated: 2023/08/08 13:04:03 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	env_builtin(t_env *env, t_cmd *cmd)
 	{
 		cur = (t_env_var *)wrk->content;
 		if (display == LOCAL_AND_ENV || \
-			(cur->export && display == ONLY_ENV) || \
+			((cur->export && display == ONLY_ENV) && cur->value[0]) || \
 			(!cur->export && display == ONLY_LOCAL))
 			ft_printf("%s=%s\n", cur->key, cur->value);
 		wrk = wrk->next;
