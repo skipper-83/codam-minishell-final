@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_execute_prompt.c                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: albertvanandel <albertvanandel@student.      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/07/14 14:40:26 by albertvanan   #+#    #+#                 */
-/*   Updated: 2023/08/01 18:33:51 by ewehl         ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_execute_prompt.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/14 14:40:26 by albertvanan       #+#    #+#             */
+/*   Updated: 2023/08/08 13:22:46 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	parse(t_env	*env, char *input)
 		return (0);
 	env->cmd_list = make_command_list(&tok_list);
 	if (env->cmd_list == NULL)
-		return (0);
+		return (env->last_exit = 0, 0);
 	if (!parse_quotes(env))
 		return (0);
+	if (env->cmd_list == NULL)
+		return (env->last_exit = 0, 0);
 	if (!parse_command_list(env->cmd_list, env))
 		return (0);
 	if (!check_conditions(env->cmd_list, NULL, 0))
