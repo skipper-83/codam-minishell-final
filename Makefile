@@ -23,7 +23,7 @@ EXPAND_SRCS_LST		= backslash.c expand_var.c environment.c check_wildcard.c wildc
 DEBUG_SRCS_LST		= print.c
 UTIL_SRCS_LST		= errors.c cmd_struct.c list_to_arr.c add_env_var.c
 EXEC_SRCS_LST		= execute_tree.c file_management.c get_command.c pipe.c execute_cmd_type.c make_env_arr.c exec_pipe_utils.c here_doc.c clean_up.c
-BUILTIN_SRCS_LST	= builtins.c env_cd_echo_pwd.c set_local_var.c export_unset.c exit.c
+BUILTIN_SRCS_LST	= builtins.c env_echo_pwd.c set_local_var.c export_unset.c exit.c cd.c
 MAIN_SRC_LIST		= minishell.c signals.c init.c parse_execute_prompt.c
 
 LEX_SRCS		= $(addprefix $(LEX_DIR)/, $(LEX_SRCS_LST))

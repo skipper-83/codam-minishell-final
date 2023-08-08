@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   env_cd_echo_pwd.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 13:40:14 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/08 13:04:03 by avan-and         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   env_cd_echo_pwd.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: avan-and <avan-and@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/07/05 13:40:14 by albertvanan   #+#    #+#                 */
+/*   Updated: 2023/08/08 13:21:23 by ewehl         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,6 @@ int	env_builtin(t_env *env, t_cmd *cmd)
 			ft_printf("%s=%s\n", cur->key, cur->value);
 		wrk = wrk->next;
 	}
-	return (0);
-}
-
-/**
- * @brief	Change the current working directory and update the 
- * 			PATH and OLDPWD vars.
- * 
- * @param cmd The structure with the parsed command and its arguments.
- * @param env The structure with the current environment variables.
- * @return int Returns 0 if the command was executed successfully, and 1 
- * 			in case of an error.
- */
-int	cd(t_cmd *cmd, t_env *env)
-{
-	char		*new_pwd;
-	char		new_cwd[PATH_MAX];
-	t_env_var	*old_pwd;
-	t_env_var	*pwd;
-
-	pwd = (t_env_var *)get_env_var(env->env_vars, "PWD")->content;
-	old_pwd = (t_env_var *)get_env_var(env->env_vars, "OLDPWD")->content;
-	if (cmd->args == NULL)
-		new_pwd = ft_strdup(get_env_value(env->env_vars, "HOME"));
-	else
-		new_pwd = ft_strdup(cmd->arg_arr[1]);
-	if (new_pwd == NULL)
-		return (mem_error(), 1 << 8);
-	if (chdir(new_pwd) < 0)
-		return (ft_dprintf(2, "cd: "), perror(new_pwd), free(new_pwd), 1 << 8);
-	free(old_pwd->value);
-	old_pwd->value = pwd->value;
-	free(new_pwd);
-	getcwd(new_cwd, PATH_MAX);
-	pwd->value = ft_strdup(new_cwd);
-	if (pwd->value == NULL)
-		return (mem_error(), 1 << 8);
 	return (0);
 }
 
