@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_command.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/23 13:31:50 by ewehl             #+#    #+#             */
-/*   Updated: 2023/08/07 11:34:44 by avan-and         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_command.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: avan-and <avan-and@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/07/23 13:31:50 by ewehl         #+#    #+#                 */
+/*   Updated: 2023/08/08 13:56:31 by ewehl         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,18 @@ char	*cmd_pathfinder(char *cmd, char **paths)
 	return (NULL);
 }
 
+char	*check_access(char **ret_cmd, t_cmd *cmd)
+{
+	*ret_cmd = ft_strjoin(cmd->path, cmd->literal);
+	if (access(*ret_cmd, F_OK) == 0)
+	{
+		if (access(*ret_cmd, X_OK) < 0)
+			return (print_error(PERM_DEN, NULL), free(*ret_cmd), NULL);
+		return (*ret_cmd);
+	}
+	return (print_error(NO_FILE_DIR, *ret_cmd), free(*ret_cmd), NULL);
+}
+
 /**
  * @brief Finds the full path of a command.
  *
@@ -95,11 +107,7 @@ char	*get_cmd_path(t_cmd *cmd, t_env *env)
 	ret_cmd = NULL;
 	if (cmd->path)
 	{
-		ret_cmd = ft_strjoin(cmd->path, cmd->literal);
-		if (access(ret_cmd, F_OK | X_OK) == 0)
-			return (ret_cmd);
-		else
-			return (print_error(NO_FILE_DIR, ret_cmd), free(ret_cmd), NULL);
+		return (check_access(&ret_cmd, cmd));
 	}
 	tmp_env_path = get_env_value(env->env_vars, "PATH");
 	if (tmp_env_path == NULL)
