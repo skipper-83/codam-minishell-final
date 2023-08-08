@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:19:00 by ewehl             #+#    #+#             */
-/*   Updated: 2023/08/07 15:45:20 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:11:11 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	execute_simple_command(t_cmd *cmd, t_env *env)
 			return (127 << 8);
 		if (!is_dir(cmd_path))
 			return (print_error(IS_DIR, cmd_path), free(cmd_path), 126 << 8);
+		if (access(cmd_path, X_OK) < 0)
+			return (print_error(PERM_DEN, cmd_path), free(cmd_path), 126 << 8);
 		env_arr = make_env_arr(env, cmd);
 		if (env_arr == NULL)
 			return (mem_error(), -1);

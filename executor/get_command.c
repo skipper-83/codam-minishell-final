@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_command.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: avan-and <avan-and@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/07/23 13:31:50 by ewehl         #+#    #+#                 */
-/*   Updated: 2023/08/08 13:56:31 by ewehl         ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_command.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/23 13:31:50 by ewehl             #+#    #+#             */
+/*   Updated: 2023/08/08 14:08:14 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,7 @@ char	*check_access(char **ret_cmd, t_cmd *cmd)
 {
 	*ret_cmd = ft_strjoin(cmd->path, cmd->literal);
 	if (access(*ret_cmd, F_OK) == 0)
-	{
-		if (access(*ret_cmd, X_OK) < 0)
-			return (print_error(PERM_DEN, NULL), free(*ret_cmd), NULL);
 		return (*ret_cmd);
-	}
 	return (print_error(NO_FILE_DIR, *ret_cmd), free(*ret_cmd), NULL);
 }
 
