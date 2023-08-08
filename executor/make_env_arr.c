@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   make_env_arr.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 22:51:51 by ewehl             #+#    #+#             */
-/*   Updated: 2023/08/07 12:12:04 by avan-and         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   make_env_arr.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: avan-and <avan-and@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/07/11 22:51:51 by ewehl         #+#    #+#                 */
+/*   Updated: 2023/08/08 11:55:42 by ewehl         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static char	**allocate_env_arr(int count)
 {
 	char	**res;
 
-	res = (char **)malloc(sizeof(char *) * count + 1);
+	res = (char **)malloc(sizeof(char *) * (count + 1));
 	if (res == NULL)
 		return (print_error(ERR_MEM, NULL), NULL);
 	res[count] = NULL;
