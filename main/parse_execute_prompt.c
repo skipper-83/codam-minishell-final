@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:40:26 by albertvanan       #+#    #+#             */
-/*   Updated: 2023/08/08 13:22:46 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:32:28 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parse(t_env	*env, char *input)
 		return (0);
 	env->cmd_list = make_command_list(&tok_list);
 	if (env->cmd_list == NULL)
-		return (env->last_exit = 0, 0);
+		return (0);
 	if (!parse_quotes(env))
 		return (0);
 	if (env->cmd_list == NULL)
