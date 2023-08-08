@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cd.c                                               :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: ewehl <ewehl@student.codam.nl>               +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/08/08 13:08:41 by ewehl         #+#    #+#                 */
-/*   Updated: 2023/08/08 13:30:57 by ewehl         ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/08 13:08:41 by ewehl             #+#    #+#             */
+/*   Updated: 2023/08/08 13:35:14 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ static int	update_pwd_values(char *new_pwd, t_env_var *old_pwd, t_env_var *pwd)
 	char	new_cwd[PATH_MAX];
 
 	if (chdir(new_pwd) < 0)
-		return (ft_dprintf(2, "fsf\n"), print_error(NO_FILE_DIR, new_pwd), \
-			free(new_pwd), 1);
+		return (print_error(NO_FILE_DIR, new_pwd), free(new_pwd), 1);
 	free(old_pwd->value);
 	old_pwd->value = pwd->value;
 	getcwd(new_cwd, PATH_MAX);
