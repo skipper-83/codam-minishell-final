@@ -6,7 +6,7 @@
 /*   By: avan-and <avan-and@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 23:19:00 by ewehl             #+#    #+#             */
-/*   Updated: 2023/08/08 14:11:11 by avan-and         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:30:51 by avan-and         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	execute_and(t_btnode *node, t_env *env)
 	int	retval;
 
 	retval = execute_command_tree(node->left, env);
-	if (!WEXITSTATUS(retval))
+	if (!retval)
 		retval = execute_command_tree(node->right, env);
 	return (retval);
 }
@@ -127,7 +127,7 @@ int	execute_or(t_btnode *node, t_env *env)
 	int	retval;
 
 	retval = execute_command_tree(node->left, env);
-	if (WEXITSTATUS(retval))
+	if (retval)
 		retval = execute_command_tree(node->right, env);
 	return (retval);
 }
